@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice #{{order_number}}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .invoice-container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        .invoice-text {
+            font-family: "Times New Roman", serif;
+            font-size: 1.1rem;
+
+
+        }
+
+        hr {
+            margin-bottom: 2rem;
+            opacity: 0.5;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid gray;
+            padding: 10px;
+            text-align: center;
+        }
+
+        @media print {
+            .print-area {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="invoice-container">
+        <h3 class="text-primary">Invoice for Order #{{order_number}}</h3>
+        <p class="invoice-text"><strong>Date: </strong> {{address.order_time|date:"d M Y, h:i A" }}</p>
+        <p><strong>Address: </strong> {{address.address}}</p>
+        <hr>
+
+        <table>
+            <thead>
+
+                <tr>
+                    <th>#</th>
+                    <th>Food Item</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in order_data%}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{order.food.item_name}}</td>
+                    <td>{{order.food.item_price}}</td>
+                    <td>{{order.quantity}}</td>
+                    <td>{{order.total_price}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="4" style="text-align: center;">Grand Total</th>
+                    <th>&#8377; {{grand_total}}</th>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="print-area" style="margin-top: 30px;">
+            <button onclick="window.print()" style="padding:10px 20px;
+         background:#3c72c3; 
+         color:white; 
+         border:none; 
+         border-radius:6px;">
+                <i class="fas fa-file-invoice " style="margin-right: 5px;"></i>
+                <strong>Print Invoice</strong>
+            </button>
+        </div>
+
+    </div>
+</body>
+
+</html>
