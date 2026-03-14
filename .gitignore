@@ -1,4 +1,6 @@
 # Python
+backend/staticfiles/
+media/
 __pycache__/
 *.py[cod]
 *.pyo
