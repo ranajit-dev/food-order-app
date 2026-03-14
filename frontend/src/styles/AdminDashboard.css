@@ -1,0 +1,37 @@
+.dashboard-card-hover{
+    transition: all 0.3s ease-in-out;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.dashboard-card-hover:hover{
+    transform: scale(1.01);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.admin-card-icon:hover{
+    filter: drop-shadow(0 0 5px #fff);
+}
+
+.admin-dash-title{
+    position: relative;
+    display: inline-block;
+}
+.admin-dash-title::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background-color: #ec842f;
+    transition: width 0.3s ease;
+
+}
+
+.dashboard-card-hover:hover .admin-dash-title::after{
+    width: 100%;
+
+
+
+}

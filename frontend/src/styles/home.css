@@ -1,0 +1,93 @@
+.hero{
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media(max-width: 768){
+    .hero{
+        min-height: 300px;
+    }
+}
+
+.heart-hover{
+    transition: 0.2s ease;
+}
+.heart-hover:hover{
+    transform: scale(1.2);
+}
+
+.hover-popup{
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Food Menu CSS */
+/* Modern Pagination Wrapper */
+.modern-pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+/* Base Link/Button Styling */
+.modern-pagination .page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 1rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #4b5563; /* Subtle gray text */
+    background-color: #fff;
+    border: 1px solid #e5e7eb;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* First and Last Item border rounding */
+.modern-pagination .page-item:first-child .page-link {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+
+.modern-pagination .page-item:last-child .page-link {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+/* Hover States */
+.modern-pagination .page-item:not(.disabled):not(.current-page-info) .page-link:hover {
+    z-index: 2;
+    color: #111827; /* Darker text on hover */
+    background-color: #f9fafb; /* Light gray background */
+    border-color: #d1d5db;
+}
+
+/* Disabled States */
+.modern-pagination .page-item.disabled .page-link {
+    color: #9ca3af;
+    pointer-events: none;
+    background-color: #f3f4f6;
+    border-color: #e5e7eb;
+}
+
+/* Current Page Info Block */
+.modern-pagination .current-page-info .page-link {
+    background-color: #ffffff;
+    color: #374151;
+    cursor: default;
+}
+
+.modern-pagination .current-page-info strong {
+    color: #111827;
+    font-weight: 600;
+}

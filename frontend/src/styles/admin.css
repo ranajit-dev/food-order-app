@@ -1,0 +1,28 @@
+.icon-fix{
+    font-size: 1rem;
+}
+
+/* Admin Sidebar */
+.sidebar{
+    width: 16rem;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.list-group-item:hover{
+    background-color: #1a1a1a !important;
+    color: #f2e427 !important;
+}
+
+#page-content-wraper.with-sidebar{
+    margin-left: 16rem;
+    transition: margin-left 0.3s ease-in-out;
+
+}
+#page-content-wraper.full-width{
+    margin-left: 0;
+    transition: margin-left 0.3s ease-in-out;
+
+}
