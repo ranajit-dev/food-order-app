@@ -24,7 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-((f$+n3+j92c9o*di!tm&hn5jb^g8@@dmu*z-19fq_qn%rf!e%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 
 
@@ -45,7 +46,8 @@ INSTALLED_APPS = [
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    '192.168.31.238'
+    '192.168.31.238',
+    '.onrender.com'
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -132,6 +134,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
+TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, 'build')]
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'build/static')
+]
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
