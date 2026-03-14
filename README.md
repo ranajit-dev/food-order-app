@@ -20,11 +20,11 @@ Frontend
 
 ## Run Backend
 
-cd backend
-python manage.py runserver 
+- cd backend
+- python manage.py runserver 
 
 ## Run Frontend
 
-cd frontend
-npm install
-npm start
+- cd frontend
+- npm install
+- npm start
