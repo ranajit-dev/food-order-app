@@ -7,6 +7,7 @@ import SalesBarChart from '../components/SalesBarChart'
 import TopProducts from '../components/TopProducts'
 import WeeklySalesChart from '../components/WeeklySalesChart'
 import WeeklyUserChart from '../components/WeeklyUserChart'
+import { API_URL } from "../config";
 
 const AdminDashboard = () => {
   const adminUser = localStorage.getItem('adminUser')
@@ -67,7 +68,7 @@ const AdminDashboard = () => {
 
     const fetchMetrics = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/dashboard_metrics/");
+        const res = await fetch(`${API_URL}/api/dashboard_metrics/`);
         const data = await res.json();
         setMetrics(data);
       } catch (error) {

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import  {LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer} from 'recharts';
+import { API_URL } from "../config";
 
 
 const WeeklyUserChart = () => {
@@ -7,7 +8,7 @@ const WeeklyUserChart = () => {
     
       useEffect(() => {
       
-          fetch('http://127.0.0.1:8000/api/weekly_user_registrations/')
+          fetch(`${API_URL}/api/weekly_user_registrations/`)
             .then(res => res.json())
             .then(data => {
               setData(data)

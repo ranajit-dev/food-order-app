@@ -3,6 +3,7 @@ import PublicLayout from './PublicLayout'
 import {toast, ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useNavigate } from 'react-router-dom'
+import { API_URL } from "../config";
 
 const Register = () => {
 
@@ -35,7 +36,7 @@ const Register = () => {
             return toast.error("password didn't match")
         }
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/register/', {
+            const response = await fetch(`${API_URL}/api/register/`, {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body:JSON.stringify({first_name, last_name, email, mobile, password})

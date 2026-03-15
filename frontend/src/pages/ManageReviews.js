@@ -3,6 +3,7 @@ import AdminLayout from '../components/AdminLayout'
 import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { API_URL } from "../config";
 
 const ManageReviews = () => {
     const [reviews, setReviews] = useState([])
@@ -17,7 +18,7 @@ const ManageReviews = () => {
             });
             return;
         }
-        fetch('http://127.0.0.1:8000/api/all-reviews/')
+        fetch(`${API_URL}/api/all-reviews/`)
             .then(res => res.json())
             .then(data => {
                 setReviews(data)
@@ -41,7 +42,7 @@ const ManageReviews = () => {
     const handleDelete = (id) => {
 
         if (window.confirm("Are you sure, you want to delete this review?")) {
-            fetch(`http://127.0.0.1:8000/api/delete_review/${id}/`, {
+            fetch(`${API_URL}/api/delete_review/${id}/`, {
                 method: 'DELETE',
 
             })

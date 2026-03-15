@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { API_URL } from "../config";
 
 const TopProducts = () => {
     const [topFoods, setTopFoods] = useState([]);
 
     useEffect(() => {
 
-        fetch('http://127.0.0.1:8000/api/top_selling_foods/')
+        fetch(`${API_URL}/api/top_selling_foods/`)
             .then(res => res.json())
             .then(data => {
                 setTopFoods(data)

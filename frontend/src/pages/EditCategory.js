@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { FaPenSquare } from 'react-icons/fa'
+import { API_URL } from "../config";
 
 const EditCategory = () => {
     const [categoryName, setCategoryName] = useState('');
@@ -21,7 +22,7 @@ const EditCategory = () => {
             return;
         }
 
-        fetch(`http://127.0.0.1:8000/api/category/${id}/`)
+        fetch(`${API_URL}/api/category/${id}/`)
             .then(res => res.json())
             .then(data => {
                 setCategoryName(data.category_name);
@@ -41,7 +42,7 @@ const EditCategory = () => {
             return;
         }
 
-        fetch(`http://127.0.0.1:8000/api/category/${id}/`, {
+        fetch(`${API_URL}/api/category/${id}/`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ category_name: categoryName })

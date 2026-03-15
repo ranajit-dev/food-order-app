@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import AdminLayout from '../components/AdminLayout'
-import { Link, useNavigate } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom'
 import { CSVLink } from 'react-csv'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { API_URL } from "../config";
 
 const ManageUser = () => {
     const [users, setUsers] = useState([])
@@ -20,7 +21,7 @@ const ManageUser = () => {
             return;
         }
 
-        fetch('http://127.0.0.1:8000/api/users/')
+        fetch(`${API_URL}/api/users/`)
             .then(res => res.json())
             .then(data => {
                 setUsers(data)
@@ -51,7 +52,7 @@ const ManageUser = () => {
     const handleDelete = (id) => {
 
         if (window.confirm("Are you sure, you want to delete this user?")) {
-            fetch(`http://127.0.0.1:8000/api/delete-user/${id}/`, {
+            fetch(`${API_URL}/api/delete-user/${id}/`, {
                 method: 'DELETE',
 
             })

@@ -3,6 +3,7 @@ import AdminLayout from '../components/AdminLayout'
 import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { API_URL } from "../config";
 
 const SearchOrder = () => {
 
@@ -33,7 +34,7 @@ const SearchOrder = () => {
         if (!searchTerm.trim()) return;
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/search-orders/?q=${searchTerm}`);
+            const response = await fetch(`${API_URL}/api/search-orders/?q=${searchTerm}`);
             const data = await response.json()
 
             setOrders(data);

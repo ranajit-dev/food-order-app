@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { FaPenSquare } from 'react-icons/fa'
+import { API_URL } from "../config";
 
 const EditFood = () => {
     const { id } = useParams();
@@ -28,7 +29,7 @@ const EditFood = () => {
             return;
         }
 
-        fetch(`http://127.0.0.1:8000/api/edit-food/${id}/`)
+        fetch(`${API_URL}/api/edit-food/${id}/`)
             .then(res => res.json())
             .then(data => {
                 setFormData(data);
@@ -36,7 +37,7 @@ const EditFood = () => {
             })
             .catch(() => toast.error("Failed to edit food"));
 
-        fetch('http://127.0.0.1:8000/api/categories/')
+        fetch(`${API_URL}/api/categories/`)
             .then(res => res.json())
             .then(data => {
                 setCategories(data);
@@ -77,7 +78,7 @@ const EditFood = () => {
         data.append("is_available", formData.is_available ? "true" : "false");
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/edit-food/${id}/`, {
+            const response = await fetch(`${API_URL}/api/edit-food/${id}/`, {
                 method: 'PUT',
                 body: data
             })
@@ -179,7 +180,7 @@ const EditFood = () => {
                                     </div>
                                     <div className='col-md-6'>
                                         {formData.image && (
-                                            <img src={`http://127.0.0.1:8000${formData.image}`} alt='food-img' className='img-fluid' style={{ maxHeight: '100px', border: '1px solid red', borderRadius: '8px', padding: '4px', maxWidth: '153px' }} />
+                                            <img src={`${API_URL}${formData.image}`} alt='food-img' className='img-fluid' style={{ maxHeight: '100px', border: '1px solid red', borderRadius: '8px', padding: '4px', maxWidth: '153px' }} />
                                         )}
                                     </div>
                                 </div>

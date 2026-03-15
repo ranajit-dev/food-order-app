@@ -3,6 +3,7 @@ import PublicLayout from '../components/PublicLayout'
 import { useParams, useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import CancelOrderModal from '../components/CancelOrderModal'
+import { API_URL } from "../config";
 
 const OrderDetails = () => {
     const userId = localStorage.getItem("userId");
@@ -26,7 +27,7 @@ const OrderDetails = () => {
             return;
         }
 
-        fetch(`http://127.0.0.1:8000/api/orders/by_order_number/${order_number}/`)
+        fetch(`${API_URL}/api/orders/by_order_number/${order_number}/`)
             .then(res => res.json())
             .then(data => {
                 setOrderItems(data);
@@ -35,7 +36,7 @@ const OrderDetails = () => {
 
             })
 
-        fetch(`http://127.0.0.1:8000/api/order_address/${order_number}/`)
+        fetch(`${API_URL}/api/order_address/${order_number}/`)
             .then(res => res.json())
             .then(data => {
                 setOrderAddress(data);
@@ -46,7 +47,7 @@ const OrderDetails = () => {
     // }, [order_number])
 
     const handleCancelSuccess = () => {
-        fetch(`http://127.0.0.1:8000/api/order_address/${order_number}/`)
+        fetch(`${API_URL}/api/order_address/${order_number}/`)
             .then(res => res.json())
             .then(data => {
                 setOrderAddress(data); 
@@ -67,7 +68,7 @@ const OrderDetails = () => {
                             <div key={index} className='card mb-4 shadow-sm border-0'>
                                 <div className='row'>
                                     <div className='col-md-4'>
-                                        <img src={`http://127.0.0.1:8000${item.food.image}`} className='img-fluid rounded' style={{ height: "200px", width: '100%' }} alt="food-img" />
+                                        <img src={`${API_URL}${item.food.image}`} className='img-fluid rounded' style={{ height: "200px", width: '100%' }} alt="food-img" />
                                     </div>
                                     <div className='col-md-8 ms-1'>
                                         <h5>{item.food.item_name} ({item.food.item_quantity})</h5>
@@ -110,7 +111,7 @@ const OrderDetails = () => {
 
                                 <p><strong>Total Price: </strong> &#8377; {total}</p>
 
-                                <a href={`http://127.0.0.1:8000/api/invoice/${order_number}/`} target='_blank' className='btn btn-primary my-2 w-100' rel='noreferrer'>
+                                <a href={`${API_URL}/api/invoice/${order_number}/`} target='_blank' className='btn btn-primary my-2 w-100' rel='noreferrer'>
                                     <i className='fas fa-file-invoice me-2'></i> Invoice
                                 </a>
 

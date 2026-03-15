@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import PublicLayout from '../components/PublicLayout'
 import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { API_URL } from "../config";
 
 const PaymentPage = () => {
 
@@ -37,7 +38,7 @@ const PaymentPage = () => {
         try {
             setLoading(true);
 
-            const response = await fetch('http://127.0.0.1:8000/api/place_order/', {
+            const response = await fetch(`${API_URL}/api/place_order/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

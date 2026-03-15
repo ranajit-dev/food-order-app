@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import AdminLayout from '../components/AdminLayout'
 import { useNavigate } from 'react-router-dom'
-import { CSVa, CSVLink } from 'react-csv'
+import { CSVLink } from 'react-csv'
 import { toast } from 'react-toastify'
+import { API_URL } from "../config";
 
 const FoodBeingPrepared = () => {
     const [orders, setOrders] = useState([])
@@ -18,13 +19,13 @@ const FoodBeingPrepared = () => {
             });
             return;
         }
-        fetch('http://127.0.0.1:8000/api/food_being_prepared/')
+        fetch(`${API_URL}/api/food_being_prepared/`)
             .then(res => res.json())
             .then(data => {
                 setOrders(data)
                 setAllOrders(data)
             })
-    }, [])
+    }, [adminUser, navigate])
 
     // Date Time Formatting
     const formatDateTime = (date) => {

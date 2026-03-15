@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import AdminSidebar from './AdminSidebar'
 import AdminHeader from './AdminHeader'
 import "../styles/admin.css"
+import { API_URL } from "../config";
 
 
 const AdminLayout = ({ children }) => {
@@ -11,7 +12,7 @@ const AdminLayout = ({ children }) => {
 
     useEffect(() => {
 
-        fetch('http://127.0.0.1:8000/api/dashboard_metrics/')
+        fetch(`${API_URL}/api/dashboard_metrics/`)
             .then(res => res.json())
             .then(data => {
                 setNewOrders(data.new_orders)

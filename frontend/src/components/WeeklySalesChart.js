@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import  {BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer} from 'recharts';
+import { API_URL } from "../config";
 
 const WeeklySalesChart = () => {
     const [data, setData] = useState([]);
     
       useEffect(() => {
       
-          fetch('http://127.0.0.1:8000/api/weekly_sales_summary/')
+          fetch(`${API_URL}/api/weekly_sales_summary/`)
             .then(res => res.json())
             .then(data => {
               setData(data)

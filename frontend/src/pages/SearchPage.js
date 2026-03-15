@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import PublicLayout from '../components/PublicLayout'
 import { Link, useLocation } from 'react-router-dom'
 import '../styles/search.css'
+import { API_URL } from "../config";
 
 const SearchPage = () => {
 
@@ -10,7 +11,7 @@ const SearchPage = () => {
 
     useEffect(()=>{
             if (query) {
-                fetch(`http://127.0.0.1:8000/api/food-search/?q=${query}`)
+                fetch(`${API_URL}/api/food-search/?q=${query}`)
                 .then(res => res.json())
                 .then(data => {
                     setFoods(data)

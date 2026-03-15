@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { CSVLink } from 'react-csv'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { API_URL } from "../config";
 
 const OrderReport = () => {
 
@@ -41,7 +42,7 @@ const OrderReport = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/order-between-dates/', {
+            const response = await fetch(`${API_URL}/api/order-between-dates/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),

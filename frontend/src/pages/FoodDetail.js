@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 import { toast, ToastContainer } from 'react-toastify'
+import { API_URL } from "../config";
 
 const FoodDetail = () => {
 
@@ -19,13 +20,13 @@ const FoodDetail = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/api/foods/${id}/`)
+        fetch(`${API_URL}/api/foods/${id}/`)
             .then(res => res.json())
             .then(data => {
                 setFood(data)
             })
 
-        fetch(`http://127.0.0.1:8000/api/reviews/${id}/`)
+        fetch(`${API_URL}/api/reviews/${id}/`)
             .then(res => res.json())
             .then(data => {
                 setReviews(data)
@@ -46,7 +47,7 @@ const FoodDetail = () => {
 
 
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/cart/add/', {
+            const response = await fetch(`${API_URL}/api/cart/add/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -97,7 +98,7 @@ const FoodDetail = () => {
             comment
         };
 
-        const url = editId ? `http://127.0.0.1:8000/api/review_edit/${editId}/` : `http://127.0.0.1:8000/api/reviews/add/${id}/`;
+        const url = editId ? `${API_URL}/api/review_edit/${editId}/` : `${API_URL}/api/reviews/add/${id}/`;
 
         const method = editId ? 'PUT' : 'POST';
 
@@ -114,7 +115,7 @@ const FoodDetail = () => {
                 setRating(0);
                 setEditId(null);
 
-                const updatedReviews = await fetch(`http://127.0.0.1:8000/api/reviews/${id}/`).then(res => res.json());
+                const updatedReviews = await fetch(`${API_URL}/api/reviews/${id}/`).then(res => res.json());
                 setReviews(updatedReviews);
 
             } else {
@@ -127,7 +128,7 @@ const FoodDetail = () => {
     };
 
     const fetchReviews = async () => {
-        const res = await fetch(`http://127.0.0.1:8000/api/reviews/${id}/`)
+        const res = await fetch(`${API_URL}/api/reviews/${id}/`)
         const data = await res.json();
         setReviews(data);
     };
@@ -136,7 +137,7 @@ const FoodDetail = () => {
         const confirmDelete = window.confirm("Are you sure to delete this review?")
         if (!confirmDelete) return;
 
-        const res = await fetch(`http://127.0.0.1:8000/api/review_edit/${id}/`, {
+        const res = await fetch(`${API_URL}/api/review_edit/${id}/`, {
             method: 'DELETE',
         })
         if (res.ok) {

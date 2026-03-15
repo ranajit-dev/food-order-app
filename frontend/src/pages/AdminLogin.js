@@ -4,6 +4,7 @@ import "../styles/admin.css"
 import {toast, ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import PublicLayout from '../components/PublicLayout'
+import { API_URL } from "../config";
 
 const AdminLogin = () => {
 
@@ -13,7 +14,7 @@ const AdminLogin = () => {
     const handleLogin = async (e)=>{
         e.preventDefault();
 
-        const response = await fetch('http://127.0.0.1:8000/api/admin-login/', {
+        const response = await fetch(`${API_URL}/api/admin-login/`, {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body:JSON.stringify({username, password})

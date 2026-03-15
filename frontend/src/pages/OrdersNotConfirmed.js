@@ -3,6 +3,7 @@ import AdminLayout from '../components/AdminLayout'
 import { useNavigate } from 'react-router-dom'
 import {  CSVLink } from 'react-csv'
 import { toast } from 'react-toastify'
+import { API_URL } from "../config";
 
 const OrdersNotConfirmed = () => {
 
@@ -19,7 +20,7 @@ const OrdersNotConfirmed = () => {
             });
             return;
         }
-        fetch('http://127.0.0.1:8000/api/orders-not-confirmed/')
+        fetch(`${API_URL}/api/orders-not-confirmed/`)
             .then(res => res.json())
             .then(data => {
                 setOrders(data)

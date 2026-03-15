@@ -3,6 +3,7 @@ import PublicLayout from '../components/PublicLayout'
 import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { API_URL } from "../config";
 
 const ChangePassword = () => {
 
@@ -43,7 +44,7 @@ const ChangePassword = () => {
         return;
       }
 
-      const response = await fetch(`http://127.0.0.1:8000/api/change_password/${userId}/`, {
+      const response = await fetch(`${API_URL}/api/change_password/${userId}/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ current_password: formData.currentPassword, new_password: formData.newPassword })

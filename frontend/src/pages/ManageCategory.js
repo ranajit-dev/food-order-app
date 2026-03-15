@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { CSVLink } from 'react-csv'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { API_URL } from "../config";
 
 const ManageCategory = () => {
 
@@ -25,7 +26,7 @@ const ManageCategory = () => {
         }
 
 
-        fetch('http://127.0.0.1:8000/api/categories/')
+        fetch(`${API_URL}/api/categories/`)
             .then(res => res.json())
             .then(data => {
                 setCategories(data)
@@ -62,7 +63,7 @@ const ManageCategory = () => {
     const handleDelete = (id) => {
 
         if (window.confirm("Are you sure, you want to delete this category?")) {
-            fetch(`http://127.0.0.1:8000/api/category/${id}/`, {
+            fetch(`${API_URL}/api/category/${id}/`, {
                 method: 'DELETE',
 
             })

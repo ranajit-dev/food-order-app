@@ -3,7 +3,7 @@ import PublicLayout from '../components/PublicLayout'
 import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { FaMinus, FaPlus, FaShoppingCart, FaTrash } from 'react-icons/fa'
+import { API_URL } from "../config";
 
 const ProfilePage = () => {
 
@@ -26,13 +26,13 @@ const ProfilePage = () => {
             return;
         }
 
-        fetch(`http://127.0.0.1:8000/api/user/${userId}/`)
+        fetch(`${API_URL}/api/user/${userId}/`)
             .then(res => res.json())
             .then(data => {
                 setFormData(data)
 
             })
-    }, [userId])
+    }, [userId, navigate])
 
     const handleChange = (e) => {
 
@@ -45,7 +45,7 @@ const ProfilePage = () => {
 
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/user_update/${userId}/`, {
+            const response = await fetch(`${API_URL}/api/user_update/${userId}/`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ first_name: formData.first_name, last_name: formData.last_name })

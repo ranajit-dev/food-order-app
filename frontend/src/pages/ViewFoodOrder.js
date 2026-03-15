@@ -3,6 +3,7 @@ import AdminLayout from '../components/AdminLayout'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import '../styles/vieworder.css'
+import { API_URL } from "../config";
 
 
 const ViewFoodOrder = () => {
@@ -26,13 +27,13 @@ const ViewFoodOrder = () => {
 
         if (!orderNumber) return;
 
-        fetch(`http://127.0.0.1:8000/api/view-order-detail/${orderNumber}/`)
+        fetch(`${API_URL}/api/view-order-detail/${orderNumber}/`)
             .then(res => res.json())
             .then(data => {
                 setData(data)
             })
 
-    }, [orderNumber])
+    }, [adminUser, orderNumber, navigate])
 
 
     // Date Time Formatting
@@ -114,11 +115,11 @@ const ViewFoodOrder = () => {
 
                                         <td>
                                             <img
-                                                src={`http://127.0.0.1:8000${food.image}`}
+                                                src={`${API_URL}${food.image}`}
                                                 alt=""
                                                 className="thumb"
                                                 onClick={() =>
-                                                    setPreviewImg(`http://127.0.0.1:8000${food.image}`)
+                                                    setPreviewImg(`${API_URL}${food.image}`)
                                                 }
                                             />
                                         </td>
@@ -174,7 +175,7 @@ const ViewFoodOrder = () => {
                             const status = e.target.status.value;
                             const remark = e.target.remark.value;
 
-                            fetch('http://127.0.0.1:8000/api/update-order-status/', {
+                            fetch(`${API_URL}/api/update-order-status/`, {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify({

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { API_URL } from "../config";
 
 const CancelOrderModal = ({ show, handleClose, orderNumber, paymentMode, onSuccess }) => {
     const [remark, setRemark] = useState("")
@@ -13,7 +14,7 @@ const CancelOrderModal = ({ show, handleClose, orderNumber, paymentMode, onSucce
         }
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/cancel_order/${orderNumber}/`, {
+            const response = await fetch(`${API_URL}/api/cancel_order/${orderNumber}/`, {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

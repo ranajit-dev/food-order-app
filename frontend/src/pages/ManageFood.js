@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { CSVLink } from 'react-csv'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { API_URL } from "../config";
 
 const ManageFood = () => {
 
@@ -14,7 +15,7 @@ const ManageFood = () => {
         const foodsPerPage = 5;
 
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/api/foods/')
+        fetch(`${API_URL}/api/foods/`)
             .then(res => res.json())
             .then(data => {
                 setFoods(data)
@@ -38,7 +39,7 @@ const ManageFood = () => {
     const handleDelete = (id) => {
 
         if (window.confirm("Are you sure, you want to delete this food item?")) {
-            fetch(`http://127.0.0.1:8000/api/delete-food/${id}/`, {
+            fetch(`${API_URL}/api/delete-food/${id}/`, {
                 method: 'DELETE',
 
             })

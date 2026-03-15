@@ -12,16 +12,21 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-((f$+n3+j92c9o*di!tm&hn5jb^g8@@dmu*z-19fq_qn%rf!e%'
+# SECRET_KEY = 'django-insecure-((f$+n3+j92c9o*di!tm&hn5jb^g8@@dmu*z-19fq_qn%rf!e%'
+SECRET_KEY = os.environ.get("SECRET_KEY", "fallback-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
@@ -50,10 +55,13 @@ ALLOWED_HOSTS = [
     '.onrender.com'
 ]
 
+# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://192.168.31.238:3000",
     "http://127.0.0.1:3000",
+    "https://food-order-frontend.vercel.app",
 ]
 
 # CORS_ALLOW_ALL_ORIGINS = True
@@ -134,15 +142,26 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
-TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, 'build')]
+# TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, 'build')]
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'build/static')
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'build/static')
+# ]
+
+# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+TEMPLATES[0]['DIRS'] = [BASE_DIR / "build"]
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STATICFILES_DIRS = [
+    BASE_DIR / "build/static"
+]
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR /'media'

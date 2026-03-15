@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useWishlist } from '../context/WishlistContext'
+import { API_URL } from "../config";
 
 const Wishlist = () => {
     const [wishlist, setWishlist] = useState([])
@@ -16,7 +17,7 @@ const Wishlist = () => {
 
         if (!userId) return
 
-        const res = await fetch(`http://127.0.0.1:8000/api/wishlist/${userId}/`);
+        const res = await fetch(`${API_URL}/api/wishlist/${userId}/`);
         const data = await res.json();
         setWishlist(data);
 
@@ -26,7 +27,7 @@ const Wishlist = () => {
     const removeFromWishlist = async (foodId) => {
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/wishlist/remove/`, {
+            const response = await fetch(`${API_URL}/api/wishlist/remove/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -73,7 +74,7 @@ const Wishlist = () => {
                                         {/* Image & Wishlist Button Container */}
                                         <div className='position-relative'>
                                             <img
-                                                src={`http://127.0.0.1:8000${item.image}`}
+                                                src={`${API_URL}${item.image}`}
                                                 className='card-img-top'
                                                 alt={item.item_name}
                                                 style={{ height: '200px', objectFit: 'cover' }}

@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { FaBoxOpen, FaInfoCircle, FaMapMarkedAlt } from 'react-icons/fa';
+import { API_URL } from "../config";
 
 
 const MyOrders = () => {
@@ -20,7 +21,7 @@ const MyOrders = () => {
             return;
         }
 
-        fetch(`http://127.0.0.1:8000/api/orders/${userId}/`)
+        fetch(`${API_URL}/api/orders/${userId}/`)
             .then(res => res.json())
             .then(data => {
                 setOrders(data);

@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import '../styles/layout.css'
 import { useCart } from '../context/CartContext'
 import { useWishlist } from '../context/WishlistContext'
+import { API_URL } from "../config";
 
 const PublicLayout = ({ children }) => {
 
@@ -18,7 +19,7 @@ const PublicLayout = ({ children }) => {
     const userId = localStorage.getItem("userId")
     if (!userId) return
 
-    const res = await fetch(`http://127.0.0.1:8000/api/cart/${userId}/`);
+    const res = await fetch(`${API_URL}/api/cart/${userId}/`);
     const data = await res.json();
     setCartCount(data.length)
 
@@ -28,7 +29,7 @@ const PublicLayout = ({ children }) => {
     const userId = localStorage.getItem("userId")
     if (!userId) return
 
-    const res = await fetch(`http://127.0.0.1:8000/api/wishlist/${userId}/`);
+    const res = await fetch(`${API_URL}/api/wishlist/${userId}/`);
     const data = await res.json();
     setWishlistCount(data.length)
 

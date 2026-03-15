@@ -7,6 +7,7 @@ import 'rc-slider/assets/index.css';
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useWishlist } from '../context/WishlistContext'
+import { API_URL } from "../config";
 
 const FoodMenu = () => {
     const [foods, setFoods] = useState([])
@@ -34,14 +35,14 @@ const FoodMenu = () => {
     const { setWishlistCount } = useWishlist();
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/api/foods/`)
+        fetch(`${API_URL}/api/foods/`)
             .then(res => res.json())
             .then(data => {
                 setFoods(data)
                 setFilteredFoods(data)
             })
 
-        fetch(`http://127.0.0.1:8000/api/categories/`)
+        fetch(`${API_URL}/api/categories/`)
             .then(res => res.json())
             .then(data => {
                 setCategories(data);
@@ -55,7 +56,7 @@ const FoodMenu = () => {
         const fetchAllRatings = async () => {
             try {
                 const fetchPromises = foods.map(async (food) => {
-                    const res = await fetch(`http://127.0.0.1:8000/api/food_rating_summary/${food.id}/`);
+                    const res = await fetch(`${API_URL}/api/food_rating_summary/${food.id}/`);
 
                     if (!res.ok) {
                         throw new Error(`HTTP error! status: ${res.status}`);
@@ -169,7 +170,7 @@ const FoodMenu = () => {
     // Fetch user's wishlist on load
     useEffect(() => {
         if (userId) {
-            fetch(`http://127.0.0.1:8000/api/wishlist/${userId}/`)
+            fetch(`${API_URL}/api/wishlist/${userId}/`)
                 .then(res => res.json())
                 .then(data => {
                     const wishlistIds = data.map(item => item.food_id);
@@ -189,7 +190,7 @@ const FoodMenu = () => {
         const endpoint = isWishlisted ? 'remove' : 'add';
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/wishlist/${endpoint}/`, {
+            const response = await fetch(`${API_URL}/api/wishlist/${endpoint}/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

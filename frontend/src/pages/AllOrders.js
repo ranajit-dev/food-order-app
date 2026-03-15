@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import {  CSVLink } from 'react-csv'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { API_URL } from "../config";
 
 const AllOrders = () => {
     const [orders, setOrders] = useState([])
@@ -19,7 +20,7 @@ const AllOrders = () => {
             });
             return;
         }
-        fetch('http://127.0.0.1:8000/api/all-foods/')
+        fetch(`${API_URL}/api/all-foods/`)
             .then(res => res.json())
             .then(data => {
                 setOrders(data)

@@ -4,6 +4,7 @@ import '../styles/track.css'
 import { useParams } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { API_URL } from "../config";
 
 const TrackOrder = () => {
     const [orderNumber, setOrderNumber] = useState('');
@@ -31,7 +32,7 @@ const TrackOrder = () => {
         }
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/track_order/${orderNum}/`)
+            const response = await fetch(`${API_URL}/api/track_order/${orderNum}/`)
 
             
             const data = await response.json();

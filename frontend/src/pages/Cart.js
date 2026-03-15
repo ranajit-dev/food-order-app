@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { FaMinus, FaPlus, FaShoppingCart, FaTrash } from 'react-icons/fa'
 import { useCart } from '../context/CartContext'
+import { API_URL } from "../config";
 
 const Cart = () => {
 
@@ -23,7 +24,7 @@ const Cart = () => {
             return;
         }
 
-        fetch(`http://127.0.0.1:8000/api/cart/${userId}/`)
+        fetch(`${API_URL}/api/cart/${userId}/`)
             .then(res => res.json())
             .then(data => {
                 setCartItems(data)
@@ -38,7 +39,7 @@ const Cart = () => {
         if (newQty < 1) return;
 
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/cart/update_quantity/', {
+            const response = await fetch(`${API_URL}/api/cart/update_quantity/`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -48,7 +49,7 @@ const Cart = () => {
             })
 
             if (response.status === 200) {
-                const updated = await fetch(`http://127.0.0.1:8000/api/cart/${userId}/`)
+                const updated = await fetch(`${API_URL}/api/cart/${userId}/`)
 
                 const data = await updated.json()
                 
@@ -72,14 +73,14 @@ const Cart = () => {
         if(!confirmDelete) return;
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/cart/delete/${orderId}/`, {
+            const response = await fetch(`${API_URL}/api/cart/delete/${orderId}/`, {
                 method: 'DELETE',
 
             })
 
             if (response.status === 200) {
 
-                const updated = await fetch(`http://127.0.0.1:8000/api/cart/${userId}/`)
+                const updated = await fetch(`${API_URL}/api/cart/${userId}/`)
 
                 const data = await updated.json()
                 
@@ -118,7 +119,7 @@ const Cart = () => {
                                     <div className='card shadow-sm mb-5 w-100  '>
                                         <div className='row g-0 h-100'>
                                             <div className='col-md-4 d-flex'>
-                                                <img src={`http://127.0.0.1:8000${item.food.image}`} className=' rounded' style={{ Height: "200px" , width:"100%", objectFit: "cover"}} alt="food-img" />
+                                                <img src={`${API_URL}${item.food.image}`} className=' rounded' style={{ Height: "200px" , width:"100%", objectFit: "cover"}} alt="food-img" />
                                             </div>
                                             <div className='col-md-8'>
                                                 <div className='card-body'>
