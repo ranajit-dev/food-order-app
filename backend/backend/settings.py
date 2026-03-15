@@ -52,7 +52,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
     '192.168.31.238',
-    '.onrender.com'
+   "food-order-backend-s5it.onrender.com",
+   "food-order-app-39oc.onrender.com"
 ]
 
 # ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
@@ -61,7 +62,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://192.168.31.238:3000",
     "http://127.0.0.1:3000",
-    "https://food-order-frontend.vercel.app",
+    "https://food-order-app-39oc.onrender.com"
 ]
 
 # CORS_ALLOW_ALL_ORIGINS = True
