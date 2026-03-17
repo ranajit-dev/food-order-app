@@ -26,7 +26,7 @@ const AllOrders = () => {
                 setOrders(data)
                 setAllOrders(data)
             })
-    }, [])
+    }, [adminUser, navigate])
 
     // Date Time Formatting
     const formatDateTime = (date) => {

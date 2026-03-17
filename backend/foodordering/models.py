@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import RegexValidator
 from django.contrib.auth.hashers import make_password, check_password
 import uuid
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -43,7 +44,8 @@ class Food(models.Model):
     item_name = models.CharField(max_length = 50)
     item_price = models.DecimalField(max_digits=10, decimal_places=2)
     item_description = models.TextField(max_length = 500, null=True, blank=True)
-    image = models.ImageField(upload_to= 'food_images/')
+    # image = models.ImageField(upload_to= 'food_images/')
+    image = CloudinaryField('image')
     item_quantity = models.CharField(max_length=50)
     is_available = models.BooleanField(default = True)
     created_at = models.DateTimeField(auto_now_add=True)

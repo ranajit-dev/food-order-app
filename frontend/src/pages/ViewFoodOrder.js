@@ -115,11 +115,11 @@ const ViewFoodOrder = () => {
 
                                         <td>
                                             <img
-                                                src={`${API_URL}${food.image}`}
+                                                src={`${food.image}`}
                                                 alt=""
                                                 className="thumb"
                                                 onClick={() =>
-                                                    setPreviewImg(`${API_URL}${food.image}`)
+                                                    setPreviewImg(`${food.image}`)
                                                 }
                                             />
                                         </td>

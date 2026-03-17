@@ -68,7 +68,7 @@ const OrderDetails = () => {
                             <div key={index} className='card mb-4 shadow-sm border-0'>
                                 <div className='row'>
                                     <div className='col-md-4'>
-                                        <img src={`${API_URL}${item.food.image}`} className='img-fluid rounded' style={{ height: "200px", width: '100%' }} alt="food-img" />
+                                        <img src={`${item.food.image}`} className='img-fluid rounded' style={{ height: "200px", width: '100%' }} alt="food-img" />
                                     </div>
                                     <div className='col-md-8 ms-1'>
                                         <h5>{item.food.item_name} ({item.food.item_quantity})</h5>

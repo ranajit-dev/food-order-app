@@ -33,7 +33,7 @@ const Cart = () => {
             setGrandTotal(total);
 
             })
-    }, [])
+    }, [userId, navigate])
 
     const updateQuantity = async (orderId, newQty) => {
         if (newQty < 1) return;
@@ -119,7 +119,7 @@ const Cart = () => {
                                     <div className='card shadow-sm mb-5 w-100  '>
                                         <div className='row g-0 h-100'>
                                             <div className='col-md-4 d-flex'>
-                                                <img src={`${API_URL}${item.food.image}`} className=' rounded' style={{ Height: "200px" , width:"100%", objectFit: "cover"}} alt="food-img" />
+                                                <img src={`${item.food.image}`} className=' rounded' style={{ Height: "200px" , width:"100%", objectFit: "cover"}} alt="food-img" />
                                             </div>
                                             <div className='col-md-8'>
                                                 <div className='card-body'>

@@ -56,7 +56,7 @@ const Wishlist = () => {
 
         fetchWishlist();
 
-    }, [])
+    }, [fetchWishlist])
 
     return (
         <PublicLayout>
@@ -74,7 +74,7 @@ const Wishlist = () => {
                                         {/* Image & Wishlist Button Container */}
                                         <div className='position-relative'>
                                             <img
-                                                src={`${API_URL}${item.image}`}
+                                                src={`${item.image}`}
                                                 className='card-img-top'
                                                 alt={item.item_name}
                                                 style={{ height: '200px', objectFit: 'cover' }}

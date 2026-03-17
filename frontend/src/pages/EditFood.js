@@ -180,7 +180,7 @@ const EditFood = () => {
                                     </div>
                                     <div className='col-md-6'>
                                         {formData.image && (
-                                            <img src={`${API_URL}${formData.image}`} alt='food-img' className='img-fluid' style={{ maxHeight: '100px', border: '1px solid red', borderRadius: '8px', padding: '4px', maxWidth: '153px' }} />
+                                            <img src={`${formData.image}`} alt='food-img' className='img-fluid' style={{ maxHeight: '100px', border: '1px solid red', borderRadius: '8px', padding: '4px', maxWidth: '153px' }} />
                                         )}
                                     </div>
                                 </div>

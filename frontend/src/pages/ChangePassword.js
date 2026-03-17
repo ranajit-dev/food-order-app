@@ -25,7 +25,7 @@ const ChangePassword = () => {
       return;
     }
 
-  }, [])
+  }, [userId, navigate])
 
   const handleChange = (e) => {
 
