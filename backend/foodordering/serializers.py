@@ -131,7 +131,7 @@ class WishlistSerializer(serializers.ModelSerializer):
     item_description = serializers.CharField(source = 'food.item_description')
     item_quantity = serializers.CharField(source = 'food.item_quantity')
     # image = serializers.ImageField(source = 'food.image')
-    image = serializers.ImageField(use_url=True, required=False, allow_null=True)
+    image = serializers.ImageField(source='food.image', use_url=True, required=False, allow_null=True)
     is_available = serializers.CharField(source = 'food.is_available')
 
     
