@@ -19,7 +19,7 @@ import cloudinary
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Load environment variables from .env file
-load_dotenv()
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -52,9 +52,9 @@ INSTALLED_APPS = [
 ]
 
 cloudinary.config(
-    cloud_name = os.environ.get("CLOUDINARY_CLOUD_NAME"),
-    api_key = os.environ.get("CLOUDINARY_API_KEY"),
-    api_secret = os.environ.get("CLOUDINARY_API_SECRET"),
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET"),
 )
 
 # ALLOWED_HOSTS = [
@@ -64,6 +64,7 @@ cloudinary.config(
 #    "food-order-backend-s5it.onrender.com",
 #    "food-order-app-39oc.onrender.com"
 # ]
+
 ALLOWED_HOSTS = [
     "food-order-backend-s5it.onrender.com",
 ]
@@ -173,16 +174,27 @@ TEMPLATES[0]['DIRS'] = []
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STATICFILES_DIRS = [
-    BASE_DIR / "build/static"
-]
+# STATICFILES_DIRS = [
+#     BASE_DIR / "build/static"
+# ]
+
+if os.path.exists(BASE_DIR / "build/static"):
+    STATICFILES_DIRS = [BASE_DIR / "build/static"]
+else:
+    STATICFILES_DIRS = []
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-# MEDIA_URL = '/media/'
+MEDIA_URL = '/media/'
 # MEDIA_ROOT = BASE_DIR /'media'
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+    }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

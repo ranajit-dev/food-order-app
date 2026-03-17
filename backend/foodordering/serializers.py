@@ -14,17 +14,14 @@ class FoodSerializer(serializers.ModelSerializer):
     category_name = serializers.CharField(source= 'category.category_name', read_only = True)
     
     # image = serializers.ImageField(use_url=True, required = False)
-    image = serializers.SerializerMethodField()
+    image = serializers.ImageField(use_url=True, required=False, allow_null=True)
     is_available = serializers.BooleanField(default = True)
     
     class Meta:
         model = Food
         fields = ['id', 'category', 'category_name','item_name', 'item_price', 'item_description', 'image', 'item_quantity', 'is_available', 'created_at', 'updated_at']
 
-    def get_image(self, obj):
-        if obj.image:
-            return obj.image.url
-        return None
+
 
 
 class CartOrderSerializer(serializers.ModelSerializer):
@@ -112,16 +109,14 @@ class OrderedFoodSerializer(serializers.ModelSerializer):
     item_name = serializers.CharField(source = 'food.item_name')
     item_price = serializers.CharField(source = 'food.item_price')
     # image = serializers.ImageField(source = 'food.image')
-    image = serializers.SerializerMethodField()
+    image = serializers.ImageField(use_url=True, required=False, allow_null=True)
     
     class Meta:
         model = Order
         fields = [ 'item_name','item_price', 'image']
 
-    def get_image(self, obj):
-        if obj.food.image:
-            return obj.food.image.url
-        return None   
+
+ 
 
 class OrderTrackingSerializer(serializers.ModelSerializer):
     
@@ -136,7 +131,7 @@ class WishlistSerializer(serializers.ModelSerializer):
     item_description = serializers.CharField(source = 'food.item_description')
     item_quantity = serializers.CharField(source = 'food.item_quantity')
     # image = serializers.ImageField(source = 'food.image')
-    image = serializers.SerializerMethodField()
+    image = serializers.ImageField(use_url=True, required=False, allow_null=True)
     is_available = serializers.CharField(source = 'food.is_available')
 
     
@@ -144,10 +139,7 @@ class WishlistSerializer(serializers.ModelSerializer):
         model = Wishlist
         fields = [ 'food_id','item_name', 'item_price', 'item_description','is_available' ,'image', 'item_quantity']
 
-    def get_image(self, obj):
-        if obj.food.image:
-            return obj.food.image.url
-        return None
+
     
 
 class ReviewSerializer(serializers.ModelSerializer):

@@ -45,7 +45,7 @@ class Food(models.Model):
     item_price = models.DecimalField(max_digits=10, decimal_places=2)
     item_description = models.TextField(max_length = 500, null=True, blank=True)
     # image = models.ImageField(upload_to= 'food_images/')
-    image = CloudinaryField('image')
+    image = CloudinaryField('image', blank=True, null=True)
     item_quantity = models.CharField(max_length=50)
     is_available = models.BooleanField(default = True)
     created_at = models.DateTimeField(auto_now_add=True)
