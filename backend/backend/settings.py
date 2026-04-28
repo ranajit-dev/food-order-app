@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "fallback-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = os.environ.get("DEBUG", "False") == "True"
+DEBUG = os.environ.get("DEBUG", "False") == "True" ###
 
 
 
@@ -58,15 +58,16 @@ cloudinary.config(
 )
 
 # ALLOWED_HOSTS = [
-#     '127.0.0.1',
-#     'localhost',
-#     '192.168.31.238',
-#    "food-order-backend-s5it.onrender.com",
-#    "food-order-app-39oc.onrender.com"
+#     # "*",
+# #     '127.0.0.1',
+# #     'localhost',
+# #     '192.168.31.238',
+# #    "food-order-backend-s5it.onrender.com",
+# #    "food-order-app-39oc.onrender.com"
 # ]
 
 ALLOWED_HOSTS = [
-    "food-order-backend-s5it.onrender.com",
+    "food-order-backend-s5it.onrender.com",    ###
 ]
 
 
@@ -78,7 +79,7 @@ ALLOWED_HOSTS = [
 # ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://food-order-app-39oc.onrender.com"
+    "https://food-order-app-39oc.onrender.com"   ###
 ]
 
 # CORS_ALLOW_ALL_ORIGINS = True
@@ -198,3 +199,4 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+TEMPLATES[0]['DIRS'] = [BASE_DIR / "build"]

@@ -192,6 +192,7 @@ const Home = () => {
                                 foods.map((food, index) => (
                                     <div key={food.id} className='col-md-4  mb-4 d-flex align-items-stretch'>
                                         <div className='card card-effect  shadow-sm rounded-4 h-100 overflow-hidden w-100'>
+                                            
 
                                             {/* Image & Wishlist Button Container */}
                                             <div className='position-relative'>
@@ -345,7 +346,7 @@ const Home = () => {
 
             <section className='py-5 text-dark text-center bg-warning'>
                 <h4>Ready to Satisfy Your Hunger</h4>
-                <Link to="" className='btn btn-dark btn-lg'>Browse Full Menu</Link>
+                <Link to="/food-menu" className='btn btn-dark btn-lg'>Browse Full Menu</Link>
             </section>
         </PublicLayout>
     )

@@ -336,6 +336,7 @@ def get_order_address(request, order_number):
 def get_invoice(request, order_number):
     orders = Order.objects.filter(order_number = order_number, is_order_placed = True).select_related('food')
     address = OrderAddress.objects.get(order_number = order_number)
+    payment = PaymentDetail.objects.filter(order_number=order_number).first()
     
     grand_total = 0
     order_data = []
@@ -355,7 +356,46 @@ def get_invoice(request, order_number):
         'order_data': order_data,
         'address': address,
         'grand_total': grand_total,
+        'payment': payment,
     })
+ 
+ 
+ 
+# Admin Invoice API 
+def admin_invoice(request, order_number):
+    orders = Order.objects.filter(
+        order_number=order_number,
+        is_order_placed=True
+    ).select_related('food')
+
+    address = OrderAddress.objects.get(order_number=order_number)
+    
+    payment = PaymentDetail.objects.filter(order_number=order_number).first()
+
+    grand_total = 0
+    order_data = []
+
+    for order in orders:
+        total_price = order.food.item_price * order.quantity
+        grand_total += total_price
+
+        order_data.append({
+            'food': order.food,
+            'quantity': order.quantity,
+            'total_price': total_price,
+        })
+
+    context = {
+        'order_number': order_number,
+        'order_data': order_data,
+        'address': address,
+        'grand_total': grand_total,
+        'payment': payment,
+    }
+
+    return render(request, 'admin_invoice.html', context)
+
+   
     
 # Get User-Data API 
 @api_view(['GET']) 

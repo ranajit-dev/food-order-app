@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import AdminLayout from '../components/AdminLayout'
 import { useNavigate } from 'react-router-dom'
-import {  CSVLink } from 'react-csv'
+import { CSVLink } from 'react-csv'
 import { toast } from 'react-toastify'
 import { API_URL } from "../config";
 
@@ -89,8 +89,11 @@ const OrdersConfirmed = () => {
                                 <td>{formatDateTime(order.order_time)}
                                 </td>
                                 <td>
-                                    <a href={`/admin-view-order-detail/${order.order_number}`} className='btn btn-sm btn-info'>
+                                    <a href={`/admin-view-order-detail/${order.order_number}`} className='btn btn-sm btn-info me-4'>
                                         <i className='fas fa-eye me-1 '></i>View Details
+                                    </a>
+                                    <a href={`${API_URL}/api/admin/invoice/${order.order_number}/`} target='_blank' className='btn btn-primary  btn-sm' rel='noreferrer'>
+                                        <i className='fas fa-file-invoice me-2 p-1'></i> <span className='me-2'>Invoice </span>
                                     </a>
 
                                 </td>

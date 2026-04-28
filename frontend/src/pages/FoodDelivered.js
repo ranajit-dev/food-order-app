@@ -92,6 +92,7 @@ const FoodDelivered = () => {
                                     <a href={`/admin-view-order-detail/${order.order_number}`} className='btn btn-sm btn-info'>
                                         <i className='fas fa-eye me-1 '></i>View Details
                                     </a>
+                                    
 
                                 </td>
                             </tr>
